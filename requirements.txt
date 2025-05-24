@@ -1,2 +1,5 @@
-TTS==0.17.5
-Flask==2.2.5
+flask==2.3.2
+TTS==0.22.0
+torch==2.1.0
+soundfile==0.12.1
+numpy==1.26.4
