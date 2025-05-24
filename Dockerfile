@@ -2,11 +2,13 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# OSパッケージのインストール（MeCab関連）
+# OSパッケージ（pyopenjtalk に必要なビルドツール）をインストール
 RUN apt-get update && apt-get install -y \
     mecab \
     libmecab-dev \
     mecab-ipadic-utf8 \
+    build-essential \
+    cmake \
     && rm -rf /var/lib/apt/lists/*
 
 # Pythonパッケージのインストール
