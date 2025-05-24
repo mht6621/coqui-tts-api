@@ -2,15 +2,20 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# 必要ファイルを先にコピーして pip install
-COPY requirements.txt .
+# OSパッケージのインストール（MeCab関連）
+RUN apt-get update && apt-get install -y \
+    mecab \
+    libmecab-dev \
+    mecab-ipadic-utf8 \
+    && rm -rf /var/lib/apt/lists/*
 
-# pip をアップグレードしてから依存関係をインストール
+# Pythonパッケージのインストール
+COPY requirements.txt .
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --prefer-binary --no-cache-dir -r requirements.txt
+RUN pip install pyopenjtalk
 
-# アプリのソースコードをコピー
+# アプリのコードをコピー
 COPY . .
 
-# アプリを起動
 CMD ["python", "main.py"]
