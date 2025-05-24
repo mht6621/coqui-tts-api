@@ -2,17 +2,15 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libsndfile1 \
-    git \
-    && rm -rf /var/lib/apt/lists/*
-
+# 必要ファイルを先にコピーして pip install
 COPY requirements.txt .
-RUN pip install --upgrade pip
+
+# pip をアップグレードしてから依存関係をインストール
+RUN pip install --upgrade pip setuptools wheel
 RUN pip install --prefer-binary --no-cache-dir -r requirements.txt
 
+# アプリのソースコードをコピー
 COPY . .
 
-EXPOSE 8000
+# アプリを起動
 CMD ["python", "main.py"]
