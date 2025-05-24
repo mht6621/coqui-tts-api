@@ -3,3 +3,6 @@ TTS==0.22.0
 torch==2.1.0
 soundfile==0.12.1
 numpy==1.26.4
+audioread==3.0.1
+attrs==23.1.0
+babel==2.12.1
