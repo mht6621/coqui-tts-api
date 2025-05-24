@@ -1,6 +1,4 @@
 flask==2.3.2
 TTS==0.22.0
-torch==2.1.0
-soundfile==0.12.1
 numpy==1.22.0
-protobuf==3.20.3
+soundfile==0.12.1
